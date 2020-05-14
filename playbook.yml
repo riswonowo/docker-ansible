@@ -1,0 +1,33 @@
+- hosts: server
+  vars:
+    image: riswonowo/docker-ansible:beta
+  tasks:
+    - name: install phython-docker ubuntu
+      apt:
+        name: phython-docker
+        state: present
+      when:
+      - ansible_distribution == "Ubuntu"
+    - name: install phython-docker centos
+      apt:
+        name: phython-docker
+        state: present
+      when:
+      - ansible_distribution == "Centos"  
+     - name: pull image
+       docker_image:
+         name: "{{ image }}"
+         state: present
+         force: yes
+     - name: create container
+       docker_container:
+         recreated: yes
+         name: docker_ansible
+         state: started
+         force: yes    
+         image: "{{ image }}"
+         exposed_ports:
+         - 8089:80
+         published_ports:
+         - 8089:80
+        
