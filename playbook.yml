@@ -9,7 +9,7 @@
       when:
       - ansible_distribution == "Ubuntu"
     - name: install python-docker centos
-      apt:
+      yum:
         name: python-docker
         state: present
       when:
