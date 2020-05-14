@@ -14,13 +14,13 @@
         state: present
       when:
       - ansible_distribution == "Centos"  
-     - name: pull image
-       docker_image:
+    - name: pull image
+      docker_image:
          name: "{{ image }}"
          state: present
          force: yes
-     - name: create container
-       docker_container:
+    - name: create container
+      docker_container:
          recreated: yes
          name: docker_ansible
          state: started
