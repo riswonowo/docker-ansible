@@ -21,7 +21,7 @@
          force: yes
     - name: create container
       docker_container:
-         recreated: yes
+         recreate: yes
          name: docker_ansible
          state: started
          force: yes    
